@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>XHS to Obsidian</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <main>
+    <header>
+      <h1>小红书采集</h1>
+      <p>保存文字、视频和主体图片到 Obsidian</p>
+    </header>
+
+    <section>
+      <h2>Obsidian</h2>
+      <label>
+        Vault 名称
+        <input id="vault" placeholder="YourVault">
+      </label>
+      <label>
+        Vault 本地路径
+        <input id="vaultPath" placeholder="D:\Obsidian\YourVault">
+      </label>
+      <label>
+        笔记保存目录
+        <input id="folder" placeholder="00_Inbox/小红书待整理">
+      </label>
+      <label>
+        标签
+        <input id="tags" placeholder="小红书待整理, 内容拆解">
+      </label>
+    </section>
+
+    <section>
+      <h2>视频</h2>
+      <label class="check">
+        <input id="includeVideo" type="checkbox" checked>
+        <span>写入视频</span>
+      </label>
+      <label class="check">
+        <input id="autoDownload" type="checkbox" checked>
+        <span>检测可播放后下载到 Vault</span>
+      </label>
+      <label class="check">
+        <input id="includeRemotePreview" type="checkbox">
+        <span>保留远程视频预览</span>
+      </label>
+      <label>
+        视频下载子目录
+        <input id="downloadFolder" placeholder="xhs-video">
+      </label>
+    </section>
+
+    <section>
+      <h2>图片</h2>
+      <label class="check">
+        <input id="includeImages" type="checkbox" checked>
+        <span>下载主体图片</span>
+      </label>
+      <label>
+        图片范围
+        <select id="imageMode">
+          <option value="main">封面 + 主体图</option>
+          <option value="cover">只要封面</option>
+          <option value="body">只要主体图</option>
+        </select>
+      </label>
+      <label>
+        图片下载子目录
+        <input id="imageFolder" placeholder="xhs-image">
+      </label>
+      <label>
+        最多下载图片数
+        <input id="maxImages" type="number" min="0" max="30" value="12">
+      </label>
+    </section>
+
+    <section>
+      <h2>输出</h2>
+      <label class="check">
+        <input id="includeSourceUrls" type="checkbox" checked>
+        <span>保留视频/图片源地址</span>
+      </label>
+      <label class="check">
+        <input id="includeCodexPrompt" type="checkbox" checked>
+        <span>加入 Codex 整理要求</span>
+      </label>
+    </section>
+
+    <div class="actions">
+      <button id="save">保存当前页</button>
+      <button id="copy" class="secondary">复制 Markdown</button>
+    </div>
+
+    <p class="hint">视频页先播放 5-10 秒；图文/轮播页先翻完主体图片，再保存。</p>
+    <p id="status"></p>
+  </main>
+  <script src="popup.js"></script>
+</body>
+</html>
